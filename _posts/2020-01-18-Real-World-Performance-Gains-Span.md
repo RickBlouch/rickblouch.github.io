@@ -50,9 +50,7 @@ The original code, and the baseline for this experiment, was written with `Strin
 
 Below is the code for the same process but using Span&lt;T&gt; instead.  There are a couple of noteworthy areas of code to point out.
 
-```c#
-  var identityKeyLength = CalculateIdentityKeyLength(props, identityKeyRequirements);
-```
+{% gist fae867e7b01ac4f4af62c7aaf2d30e2c  %}
 
 By getting the length of the output string that will be created, I can initialize our `Span<char>` to the exact length that will be needed.  
 
@@ -60,24 +58,15 @@ You might be thinking that the overhead of calculating the length might not be w
 
 After benchmarking, I found that the code performed better without the length calculation only when the max `IdentityKey` length was less than 600ish.  Since my scenario needs to support up to 1000 characters, I stuck with the length calculation version.  If the max identity key length was 500 or less, it would be better to use the version without the length calculation.  Both approaches result in the same number of allocations.  
 
-```c#
-  if (identityKeyLength > 1000) { return (null, $"IdentityKey cannot be more than 1000 characters."); }
-
-  Span<char> identityKeySpan = stackalloc char[identityKeyLength];
-```
+{% gist 635fef0b136991f527699bc2683ff55e %}
 
 This also seemed like a good candidate to [use a stackalloc expression](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc) to avoid a heap allocation until the end.
 
-
-```c#
-props.AccountNumber.AsSpan().CopyTo(identityKeySpan.Slice(currentPosition));
-```
+{% gist 96c6bec5eb9a8a2ed66e3ba1d313d1b2 %}
 
 This is the syntax for copying an input string into the `identityKeySpan` in the correct position.  This does not cause an allocation.  
 
-```c#
-return (identityKeySpan.ToString(), null); // Allocate final string
-```
+{% gist 64f230d4d2bd2743dc10fa64e6763e5d }
 
 Once the identityKeySpan has been created in full, I call ToString() which will allocate the final string before returning.
 
