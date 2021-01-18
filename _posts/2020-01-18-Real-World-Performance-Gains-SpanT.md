@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Real World Performance gains with Span&lt;T&gt;
-tags: Performance C#
 published: true
 ---
 
