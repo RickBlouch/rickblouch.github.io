@@ -9,8 +9,8 @@ published: true
 .Net Core has brought many performance gains and continues to do so with every release.  There are already many great resources that cover how Span&lt;T&gt; works so I won't be going into that in detail.  Instead, I’m going to focus this post on applying it to improve performance in a real world scenario.  Here are a few excellent resources that I found myself reading over a few times while working on the sample project.
 
 - [All About Span: Exploring a New .NET Mainstay](https://docs.microsoft.com/en-us/archive/msdn-magazine/2018/january/csharp-all-about-span-exploring-a-new-net-mainstay)
-- [Memory<T> and Span&lt;T&gt; usage guidelines](https://docs.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines)
-- [How to use Span&lt;T&gt; and Memory<T>](https://medium.com/@antao.almada/how-to-use-span-t-and-memory-t-c0b126aae652)
+- [Memory&lt;T&gt; and Span&lt;T&gt; usage guidelines](https://docs.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines)
+- [How to use Span&lt;T&gt; and Memory&lt;T&gt;](https://medium.com/@antao.almada/how-to-use-span-t-and-memory-t-c0b126aae652)
 
 In short, I think of it as a tool that gives us the ability to easily work with data that is already allocated somewhere without creating more allocations in the process.  Reducing allocations is valuable when performance tuning because it means there is less work for the garbage collector.  Less work for the GC means more processing power for your code.	
 
@@ -31,26 +31,6 @@ Because each customer's scenario is different, how we generate the `IdentityKey`
 
 {% gist a5f143a72b56e9f75310cdb15249e7b6  %}
 
-*Example data coming from Source System 1*
-```json
-{
-  "Name": "John Doe",
-	"AccountNumber": "123456",
-	"SystemCode": "S1",
-  "Balance": 74.51,
-  ...
-}
-```
-*Example data coming from Source System 2*
-```json
-{
-  "Name": "John Doe",
-	"AccountNumber": "123456",
-	"SystemCode": "S2",
-  "Balance": 74.51,
-  ...
-}
-```
 *The expected output here would be:*
 
 Source System   | IdentityKey
@@ -58,7 +38,7 @@ Source System   | IdentityKey
 Source System 1 | S1_123456
 Source System 2 | S2_123456 
 
-## Existing code using StringBuilder
+## The version using StringBuilder
 
 The original code, and the baseline for this experiment, was written with `StringBuilder`.  It's important to note that I didn't have any performance concerns with this code the way it was written.  It's also more readable and less complex which has lower maintenance costs over time.  Whether the gains are worth the added complexity depends on the scenario.
 
