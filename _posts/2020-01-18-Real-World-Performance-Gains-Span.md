@@ -32,6 +32,7 @@ Because each customer's scenario is different, how we generate the `IdentityKey`
 *The expected output for an IdentityKey generated from each sample data would be:*
 
 **Source System 1**: S1_123456
+
 **Source System 2**: S2_123456
 
 ## The version using StringBuilder
