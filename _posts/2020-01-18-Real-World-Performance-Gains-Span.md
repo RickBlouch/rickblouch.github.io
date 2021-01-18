@@ -42,8 +42,7 @@ Because each customer's scenario is different, how we generate the `IdentityKey`
 
 The original code, and the baseline for this experiment, was written with `StringBuilder`.  It's important to note that I didn't have any performance concerns with this code the way it was written.  It's also more readable and less complex which has lower maintenance costs over time.  Whether the gains are worth the added complexity depends on the scenario.
 
-
-
+Full Code:
 {% gist cfd475eb6a7c33a20ff35cd0b426443d %}
 
 ## Improving it with Span&lt;T&gt;
@@ -70,23 +69,12 @@ This is the syntax for copying an input string into the `identityKeySpan` in the
 
 Once the identityKeySpan has been created in full, I call ToString() which will allocate the final string before returning.
 
+Full Code:
 {% gist 0dd099c66babad61d927aa7fe90af6dc %}
 
 ## Benchmarks
 
-|                            Method | Iterations |           Mean |        Error |        StdDev |         Median | Ratio | RatioSD |     Gen 0 | Gen 1 | Gen 2 | Allocated |
-|---------------------------------- |----------- |---------------:|-------------:|--------------:|---------------:|------:|--------:|----------:|------:|------:|----------:|
-|     IdentityKey_WithStringBuilder |          1 |       369.0 ns |      7.25 ns |       8.63 ns |       366.9 ns |  1.00 |    0.00 |    0.1645 |     - |     - |     688 B |
-|              IdentityKey_WithSpan |          1 |       269.1 ns |      5.32 ns |       6.92 ns |       268.2 ns |  0.73 |    0.03 |    0.0362 |     - |     - |     152 B |
-| IdentityKey_WithSpan_NoLengthCalc |          1 |       308.2 ns |      5.46 ns |      10.25 ns |       307.2 ns |  0.84 |    0.04 |    0.0362 |     - |     - |     152 B |
-|                                   |            |                |              |               |                |       |         |           |       |       |           |
-|     IdentityKey_WithStringBuilder |         10 |     3,780.4 ns |     74.38 ns |     141.52 ns |     3,745.1 ns |  1.00 |    0.00 |    1.6441 |     - |     - |    6880 B |
-|              IdentityKey_WithSpan |         10 |     2,613.4 ns |     44.21 ns |      55.91 ns |     2,604.4 ns |  0.68 |    0.03 |    0.3624 |     - |     - |    1520 B |
-| IdentityKey_WithSpan_NoLengthCalc |         10 |     3,107.9 ns |     70.12 ns |     194.31 ns |     3,046.0 ns |  0.83 |    0.07 |    0.3624 |     - |     - |    1520 B |
-|                                   |            |                |              |               |                |       |         |           |       |       |           |
-|     IdentityKey_WithStringBuilder |       5000 | 2,266,970.3 ns | 53,296.95 ns | 149,450.36 ns | 2,214,432.0 ns |  1.00 |    0.00 | 1093.7500 |     - |     - | 4581840 B |
-|              IdentityKey_WithSpan |       5000 | 1,352,236.0 ns | 26,818.29 ns |  60,533.35 ns | 1,325,954.7 ns |  0.60 |    0.05 |  197.2656 |     - |     - |  831920 B |
-| IdentityKey_WithSpan_NoLengthCalc |       5000 | 1,536,566.1 ns | 30,425.87 ns |  71,717.35 ns | 1,499,633.8 ns |  0.68 |    0.05 |  197.2656 |     - |     - |  831920 B |
+
 
 ## Summary
 
