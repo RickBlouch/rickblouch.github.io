@@ -39,7 +39,6 @@ Because each customer's scenario is different, how we generate the `IdentityKey`
 
 The original code and the baseline for this experiment was written with `StringBuilder`.  It's important to note that I didn't come into this with performance concerns with this code the way it was written.  It's also arguably more readable and less complex which has lower maintenance costs over time.  Whether the gains are worth the added complexity depends on the scenario.
 
-Code:
 {% gist cfd475eb6a7c33a20ff35cd0b426443d %}
 
 ## Improving it with Span&lt;T&gt;
@@ -66,7 +65,6 @@ This is the syntax for copying an input string into the `identityKeySpan` in the
 
 Once the identityKeySpan has been created in full, a call ToString() will allocate the final string before returning the result.
 
-Code:
 {% gist 0dd099c66babad61d927aa7fe90af6dc %}
 
 ## Benchmarks
