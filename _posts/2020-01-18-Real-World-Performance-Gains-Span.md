@@ -19,7 +19,7 @@ Normally you would want to have some level of proof that it's worth the time and
 
 In this case, I just wanted to work with Span&lt;T&gt; as a learning exercise.  I also wanted to be able to apply it to a real product if the results were favorable.  I pretty quickly landed on a process that I know has a very high volume of executions, and even if only a small gain is achieved, it will have a measurable impact.  The code found in this post and repo are a simplified version of what's found in the real product and will focus on the IdentityKeyBuilder aspect only.
 
-[sample code](https://github.com/RickBlouch/PerformanceTests) can be found in IdentityKeyBuilder folders in my github repo.
+[Sample code](https://github.com/RickBlouch/PerformanceTests) can be found in IdentityKeyBuilder folders in my github repo.
 
 ## Real World Scenario
 
