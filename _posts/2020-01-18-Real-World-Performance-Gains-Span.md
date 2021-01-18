@@ -75,5 +75,5 @@ Code:
 
 ## Summary
 
-I'm happy with both execution speed gains and the amount of reduced allocations.  For a process that runs hundreds of millions of times per day, it adds up.  Just doing some quick back of the napkin math for 1 large customer import, this could reduce memory usage by around 1GB.  It's also opened my eyes to some other areas where it can be applied for most likely even greater gains.
+I'm happy with both execution speed gains and the amount of reduced allocations.  For a process that runs hundreds of millions of times per day, it adds up.  Just doing some quick back of the napkin math for 1 large customer import, this could reduce memory usage by around 1GB.  It has also opened my eyes to some other areas where it can be applied for most likely even greater gains.
 
