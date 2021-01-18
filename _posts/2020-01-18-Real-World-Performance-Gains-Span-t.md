@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Real World Performance gains with Span&lt;T&gt;
-published: false
+published: true
 ---
 
 .Net Core has brought many performance gains and continues to do so with every release.  There are already many great resources that cover how Span&lt;T&gt; works so I won't be going into that in detail.  Instead, I’m going to focus this post on applying it to improve performance in a real world scenario.  Here are a few excellent resources that I found myself reading over a few times while working on the sample project.
@@ -31,10 +31,10 @@ Because each customer's scenario is different, how we generate the `IdentityKey`
 
 *The expected output for an IdentityKey generated from each sample data would be:*
 
-|Source System   | IdentityKey
-|----------------|------------
-|Source System 1 | S1_123456
-|Source System 2 | S2_123456 
+Source System   | IdentityKey
+----------------|------------
+Source System 1 | S1_123456
+Source System 2 | S2_123456 
 
 ## The version using StringBuilder
 
