@@ -15,7 +15,7 @@ In short, I think of it as a tool that gives us the ability to easily work with 
 
 ## Why Bother?
 
-Normally you would want to have some level of proof that it's worth the time and effort to optimize a process before just diving in.  I find that tracking and measuring the performance of critical processes over time is often a great guide for where to spend time optimizing code.
+Normally you would want to have some level of proof that it's worth the time and effort to optimize a process before just diving in.  I find that [tracking and measuring the performance of critical processes]({% post_url 2021-01-23-Creating-An-Application-Insights-Timed-Event-Logger %}) over time is often a great guide for where to spend time optimizing code.
 
 In this case, I just wanted to work with Span&lt;T&gt; as a learning exercise.  I also wanted to be able to apply it to a real product if the results were favorable.  I pretty quickly landed on a process that I know has a very high volume of executions, and even if only a small gain is achieved, it will have a measurable impact.  The code found in this post and repo are a simplified version of what's found in the real product and will focus on the IdentityKeyBuilder aspect only.
 
