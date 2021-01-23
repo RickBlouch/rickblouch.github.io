@@ -14,7 +14,7 @@ I want to note that I'm not going to cover how to create and initialize a Teleme
 
 The [TrackEvent](https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics#trackevent) method has a couple of overloads that allow us to add some additional properties and metrics that get sent with the event.  Those can be used as measurements or display values in charts and when querying on your data in the Azure Portal.  
 
-## First take
+## First Take
 
 When I first got started with Custom Events, my code looked something like the following.  It creates a new `Stopwatch`, adds some custom properties and metrics, and then sends the data to the App Insights service.  This is great because we can now add logic like this across the app to track the performance of frequently run or critical processes and keep an eye on performance on a dashboard in the Azure Portal.
 
@@ -33,7 +33,7 @@ It makes use of IDisposable to wrap a section of code that will be measured.  It
 Here you can see the usage.  This is a much cleaner experience and quicker to use as it gets plugged in across your app.
 {% gist 8e919ba26c62d41ebd9fa7e30778fef7 %}
 
-## Results in the Azure Portal
+## Results In The Azure Portal
 
 These charts show what custom metrics can look like when configured to show up as a graph on an Azure Portal dashboard.  I removed the names on each graph to protect the innocent.
 
