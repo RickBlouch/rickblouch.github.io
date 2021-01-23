@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Creating An Application Insights Timed Event Logger
-published: false
+published: true
 ---
 
 Application Insights is an application monitoring service for developers to monitor their live applications.  There are a number of different types of telemetry that can be created, many of which are automatically created for you when you [configure it for your .net core web app](https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core).  You can also create telemetry as needed using the TelemetryClient.  [This doc](https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics) is a good reference for the different types of telemetry that can be created.
